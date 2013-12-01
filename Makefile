@@ -16,3 +16,4 @@ merge_sort_lib.o: algorithms/merge_sort_lib.c
 clean:
 	-rm -f *.o
 	-rm -rf $(TARGET)/*
+	-cd tests && make clean
