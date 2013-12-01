@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 
     print_array(unsorted_array, len_of_unsorted_array);
 
+    free(unsorted_array);
     return 0;
 }
 
@@ -47,38 +48,49 @@ void merge_two_arrays(int a1[], size_t l1, int a2[], size_t l2, int array[])
     memcpy(left, a1, l1*sizeof(*a1));
     memcpy(right, a2, l2*sizeof(*a2));
 
-    int cnt = l1 + l2;
+    int cnt = (int)(l1 + l2);
 
     for(size_t i = 0; i < cnt; i++)
     {
         if(l1 == 0) {
             compound[i] = right[0];
-            right = shifted_array(right, l2);
+            int *new_right = shifted_array(right, (int)l2);
+            free(right);
+            right = new_right;
             l2--;
         } else if (l2 == 0) {
             compound[i] = left[0];
-            left = shifted_array(left, l1);
+            int *new_left = shifted_array(left, (int)l1);
+            free(left);
+            left = new_left;
             l1--;
         } else {
             if(left[0] < right[0]) {
                 compound[i] = left[0];
-                left = shifted_array(left, l1);
+                int *new_left  = shifted_array(left, (int)l1);
+                free(left);
+                left = new_left;
                 l1--;
             } else {
                 compound[i] = right[0];
-                right = shifted_array(right, l2);
+                int *new_right = shifted_array(right, (int)l2);
+                free(right);
+                right = new_right;
                 l2--;
             }
         }
     }
 
     memcpy(array, compound, cnt*sizeof(*compound));
+    free(compound);
+    free(left);
+    free(right);
     return;
 }
 
 void split_n_sort(int array[], size_t count)
 {
-    int c2 = count/2;
+    int c2 = (int)count/2;
     if(c2 == 1){
         merge_two_arrays(array, c2, array+c2, c2, array);
     } else {
