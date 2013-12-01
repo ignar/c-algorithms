@@ -16,21 +16,16 @@ int * shifted_array(int array[], int count)
 void shift(int a[], size_t nmemb, int dst)
 {
     int left = dst < 0;
-
     dst = abs(dst) % nmemb;
 
-    if(dst)
-    {
+    if(dst) {
         int b[dst];
 
-        if(left)
-        {
+        if(left) {
             bcopy(a, b, dst * sizeof(int));
             bcopy(&a[dst], a, (nmemb - dst) * sizeof(int));
             bcopy(b, &a[nmemb - dst], dst * sizeof(int));
-        }
-        else
-        {
+        } else {
             bcopy(&a[nmemb - dst], b, dst * sizeof(int));
             bcopy(a, &a[dst], (nmemb - dst) * sizeof(int));
             bcopy(b, a, dst * sizeof(int));
@@ -48,8 +43,7 @@ void merge_two_arrays(int a1[], size_t l1, int a2[], size_t l2, int array[])
 
     int cnt = (int)(l1 + l2);
 
-    for(int i = 0; i < cnt; i++)
-    {
+    for(int i = 0; i < cnt; i++) {
         if(l1 == 0) {
             compound[i] = right[0];
             int *new_right = shifted_array(right, (int)l2);
