@@ -3,6 +3,7 @@
 #include <strings.h>
 #include <stdlib.h>
 
+#include "common_lib.h"
 #include "merge_sort_lib.h"
 
 int main(int argc, char *argv[])

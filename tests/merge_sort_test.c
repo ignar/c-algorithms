@@ -1,10 +1,7 @@
 #include <stdio.h>
-#include "minunit.h"
 #include "../algorithms/merge_sort_lib.c"
 
-int tests_run = 0;
-
-static char * test_merge_array_with_two_elements()
+char * test_merge_array_with_two_elements()
 {
     int a1[1], a2[1], sorted[2];
     a1[0] = 4;
@@ -15,7 +12,7 @@ static char * test_merge_array_with_two_elements()
     return 0;
 }
 
-static char * test_merge_array_with_three_elements()
+char * test_merge_array_with_three_elements()
 {
     int sorted[3];
     int a1[] = {1, 3};
@@ -27,7 +24,7 @@ static char * test_merge_array_with_three_elements()
     return 0;
 }
 
-static char * test_merge_array_with_four_elements()
+char * test_merge_array_with_four_elements()
 {
     int sorted[4];
     int a1[] = {1, 3};
@@ -40,7 +37,7 @@ static char * test_merge_array_with_four_elements()
     return 0;
 }
 
-static char * test_split_n_sort_one_elements()
+char * test_split_n_sort_one_elements()
 {
     int a[] = {1};
     split_n_sort(a, 1);
@@ -48,7 +45,7 @@ static char * test_split_n_sort_one_elements()
     return 0;
 }
 
-static char * test_split_n_sort_two_elements()
+char * test_split_n_sort_two_elements()
 {
     int a[] = {2, 1};
     split_n_sort(a, 2);
@@ -57,7 +54,7 @@ static char * test_split_n_sort_two_elements()
     return 0;
 }
 
-static char * test_split_n_sort_three_elements()
+char * test_split_n_sort_three_elements()
 {
     int a[] = {3, 2, 1};
     split_n_sort(a, 3);
@@ -67,7 +64,7 @@ static char * test_split_n_sort_three_elements()
     return 0;
 }
 
-static char * test_split_n_sort_four_elements()
+char * test_split_n_sort_four_elements()
 {
     int a[] = {4, 3, 2, 1};
     split_n_sort(a, 4);
@@ -78,7 +75,7 @@ static char * test_split_n_sort_four_elements()
     return 0;
 }
 
-static char * test_shift_left()
+char * test_shift_left()
 {
     int a[] = {1, 2, 3, 4};
     shift(a, 4, -1);
@@ -89,7 +86,7 @@ static char * test_shift_left()
     return 0;
 }
 
-static char * test_shift_right()
+char * test_shift_right()
 {
     int a[] = {1, 2, 3, 4};
     shift(a, 4, 1);
@@ -98,30 +95,4 @@ static char * test_shift_right()
     mu_assert("a[2] != 2", a[2] == 2);
     mu_assert("a[3] != 3", a[3] == 3);
     return 0;
-}
-
-static char * all_tests() {
-    mu_run_test(test_merge_array_with_two_elements);
-    mu_run_test(test_merge_array_with_three_elements);
-    mu_run_test(test_merge_array_with_four_elements);
-    mu_run_test(test_split_n_sort_one_elements);
-    mu_run_test(test_split_n_sort_two_elements);
-    mu_run_test(test_split_n_sort_three_elements);
-    mu_run_test(test_split_n_sort_four_elements);
-    mu_run_test(test_shift_left);
-    mu_run_test(test_shift_right);
-    return 0;
-}
-
-int main(int argc, char **argv) {
-    char *result = all_tests();
-    if (result != 0) {
-        printf("%s\n", result);
-    }
-    else {
-        printf("ALL TESTS PASSED\n");
-    }
-    printf("Tests run: %d\n", tests_run);
-
-    return result != 0;
 }

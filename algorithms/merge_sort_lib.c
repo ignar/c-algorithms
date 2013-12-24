@@ -3,6 +3,7 @@
 #include <strings.h>
 #include <stdlib.h>
 
+#include "common_lib.h"
 #include "merge_sort_lib.h"
 
 int * shifted_array(int array[], int count)
@@ -124,8 +125,6 @@ void split_n_sort(int array[], size_t count)
     int c2 = (int)count/2;
 
     if(count == 2) {
-        //merge_two_arrays(array, c2, array+c2, c2, array);
-
         int *t1 = malloc(c2*sizeof(*array));
         memcpy(t1, array, c2*sizeof(*array));
         int *t2 = malloc(c2*sizeof(*array));
@@ -137,7 +136,6 @@ void split_n_sort(int array[], size_t count)
             split_n_sort(array, c2+1);
             split_n_sort(array+c2+1, c2);
 
-            //merge_two_arrays(array, c2+1, array+c2+1, c2, array);
             int *t1 = malloc((c2+1)*sizeof(*array));
             memcpy(t1, array, (c2+1)*sizeof(*array));
             int *t2 = malloc(c2*sizeof(*array));
@@ -148,7 +146,6 @@ void split_n_sort(int array[], size_t count)
             split_n_sort(array, c2);
             split_n_sort(array+c2, c2);
 
-            //merge_two_arrays(array, c2, array+c2, c2, array);
             int *t1 = malloc(c2*sizeof(*array));
             memcpy(t1, array, c2*sizeof(*array));
             int *t2 = malloc(c2*sizeof(*array));
