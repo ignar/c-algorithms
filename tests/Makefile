@@ -1,15 +1,14 @@
 CC = gcc
 CFLAGS = -g -Wall
 
-all: merge_sort
-	-./merge_sort
+all: main run
 
-merge_sort: merge_sort_test.o
-	$(CC) $(LDFLAGS) -o $@ $^
+main: main.o
+	$(CC) $(LDFLAGS) -lncurses -o tests $^
 
-merge_sort.o: merge_sort_test.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+run: main
+	-./tests
 
 clean:
+	-rm -f tests
 	-rm -f *.o
-	-rm -f merge_sort

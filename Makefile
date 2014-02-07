@@ -2,7 +2,7 @@ TARGET = dist
 CC = gcc
 CFLAGS = -g -Wall
 
-all: merge_sort factorial fibonacci
+all: merge_sort factorial fibonacci closest_pair
 
 OBJECTS = $(patsubst %.c, %.o, $(wildcard algorithms/*.c))
 HEADERS = $(wildcard algorithms/*_lib.h)
@@ -17,6 +17,10 @@ factorial: factorial.o factorial_lib.o
 fibonacci: fibonacci.o fibonacci_lib.o common_lib.o
 	$(CC) $(LDFLAGS) -o $(TARGET)/$@ $^
 
+closest_pair: closest_pair.o closest_pair_lib.o common_lib.o
+	$(CC) $(LDFLAGS) -lncurses -o $(TARGET)/$@ $^
+
+
 merge_sort.o: algorithms/merge_sort.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -24,6 +28,9 @@ factorial.o: algorithms/factorial.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 fibonacci.o: algorithms/fibonacci.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+closest_pair.o: algorithms/closest_pair.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 
@@ -37,6 +44,9 @@ fibonacci_lib.o: algorithms/fibonacci_lib.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 common_lib.o: algorithms/common_lib.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+closest_pair_lib.o: algorithms/closest_pair_lib.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 
